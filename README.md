@@ -1,4 +1,5 @@
 # Youtube-DL Docker
+[![GitHub tag](https://img.shields.io/github/v/tag/lucka-me/youtube-dl-docker)](https://github.com/lucka-me/youtube-dl-docker/tags "GitHub Tags")  
 [![Docker Pulls](https://img.shields.io/docker/pulls/luckame/youtube-dl)](https://hub.docker.com/r/luckame/youtube-dl "Docker Hub") [![Docker Build Status](https://img.shields.io/docker/cloud/build/luckame/youtube-dl)](https://hub.docker.com/r/luckame/youtube-dl/builds "Docker Hub Autobuilds")
 [![License](https://img.shields.io/github/license/lucka-me/youtube-dl-docker)](./LICENSE "License")
 
