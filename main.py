@@ -30,9 +30,33 @@ configs = ChainMap(os.environ, configs_default)
 app = Bottle()
 app_done = False
 
+format_list = {
+    'video': [
+        { 'value': 'bestvideo', 'text': 'Best Video' },
+        { 'value': 'mp4', 'text': 'MP4' },
+        { 'value': 'flv', 'text': 'FLV' },
+        { 'value': 'webm', 'text': 'WebM' },
+        { 'value': 'ogg', 'text': 'Ogg' },
+        { 'value': 'mkv', 'text': 'MKV' },
+        { 'value': 'avi', 'text': 'AVI' },
+    ],
+    'video_specified': [ 'mp4', 'flv', 'webm', 'ogg', 'mkv', 'avi' ],
+    'audio': [
+        { 'value': 'bestaudio', 'text': 'Best Audio' },
+        { 'value': 'aac', 'text': 'AAC' },
+        { 'value': 'flac', 'text': 'FLAC' },
+        { 'value': 'mp3', 'text': 'MP3' },
+        { 'value': 'm4a', 'text': 'M4A' },
+        { 'value': 'opus', 'text': 'Opus' },
+        { 'value': 'vorbis', 'text': 'Vorbis' },
+        { 'value': 'wav', 'text': 'WAV' },
+    ],
+    'audio_specified': [ 'aac', 'flac', 'mp3', 'm4a', 'opus', 'vorbis', 'wav' ],
+}
+
 @app.route(configs['WEB_ROOT'])
 def root():
-    return template('root', title = configs['WEB_TITLE'])
+    return template('root', title = configs['WEB_TITLE'], format_list = format_list)
 
 @app.route(configs['WEB_ROOT'] + 'query', method = 'GET')
 def query_get():
@@ -73,11 +97,11 @@ def parse_options(options):
     # bestvideo -> original
     option_format = options.get('format', 'bestvideo')
 
-    if option_format in ['aac', 'flac', 'mp3', 'm4a', 'opus', 'vorbis', 'wav']:
+    if option_format in format_list['audio_specified']:
         target_format['YDL_EXTRACT_AUDIO_FORMAT'] = option_format
     elif option_format == 'bestaudio':
         target_format['YDL_EXTRACT_AUDIO_FORMAT'] = 'best'
-    elif option_format in ['mp4', 'flv', 'webm', 'ogg', 'mkv', 'avi']:
+    elif option_format in format_list['video_specified']:
         target_format['YDL_RECODE_VIDEO_FORMAT'] = option_format
 
     target_options = ChainMap(target_format, os.environ, configs_default)

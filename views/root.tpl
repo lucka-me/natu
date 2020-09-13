@@ -90,23 +90,14 @@
     <input name="url" type="url" placeholder="URL" aria-label="URL" aria-describedby="button-submit" required autofocus>
     <select name="format">
       <optgroup label="Video">
-        <option value="bestvideo">Best Video</option>
-        <option value="mp4">MP4</option>
-        <option value="flv">FLV</option>
-        <option value="webm">WebM</option>
-        <option value="ogg">Ogg</option>
-        <option value="mkv">MKV</option>
-        <option value="avi">AVI</option>
+        % for item in format_list['video']:
+        <option value="{{ item['value'] }}">{{ item['text'] }}</option>
+        % end
       </optgroup>
       <optgroup label="Audio">
-        <option value="bestaudio">Best Audio</option>
-        <option value="aac">AAC</option>
-        <option value="flac">FLAC</option>
-        <option value="mp3">MP3</option>
-        <option value="m4a">M4A</option>
-        <option value="opus">Opus</option>
-        <option value="vorbis">Vorbis</option>
-        <option value="wav">WAV</option>
+        % for item in format_list['audio']:
+        <option value="{{ item['value'] }}">{{ item['text'] }}</option>
+        % end
       </optgroup>
     </select>
     <button type="submit" id="button-submit">Submit</button>
