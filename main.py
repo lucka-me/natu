@@ -120,12 +120,12 @@ def download_worker():
 
 # Update ytdl and launch the app
 print('[update] Update youtube-dl to the latest version')
-update_result = update()
-if (update_result['error']):
-   print('[update] ERROR: ' + update_result['error'])
-else:
-   for line in update_result['output'].splitlines():
-       print('[update] Updated: ' + line)
+# update_result = update()
+# if (update_result['error']):
+#    print('[update] ERROR: ' + update_result['error'])
+# else:
+#    for line in update_result['output'].splitlines():
+#        print('[update] Updated: ' + line)
 
 download_thread = Thread(target = download_worker)
 download_thread.start()
