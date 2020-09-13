@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    natu:
+        image: 480d11260c96
+        container_name: natu
+        restart: always
+        environment:
+            - NATU_ROOT=/natu/
+            - NATU_TITLE=My Natu
+        volumes:
+          - ./downloads:/opt/downloads
+        ports:
+            - 8080:80
