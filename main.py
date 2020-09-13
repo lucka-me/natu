@@ -18,10 +18,10 @@ configs_default = {
     'YDL_OUTPUT_TEMPLATE': './downloads/%(title)s [%(id)s].%(ext)s',
     'YDL_ARCHIVE_FILE': None,
 
-    'NATU_HOST': '0.0.0.0',
-    'NATU_PORT': 80,
-    'NATU_ROOT': '/',
-    'NATU_TITLE': 'Natu',
+    'WEB_HOST': '0.0.0.0',
+    'WEB_PORT': 80,
+    'WEB_ROOT': '/',
+    'WEB_TITLE': 'Youtube-DL',
 }
 
 configs = ChainMap(os.environ, configs_default)
@@ -30,15 +30,15 @@ configs = ChainMap(os.environ, configs_default)
 app = Bottle()
 app_done = False
 
-@app.route(configs['NATU_ROOT'])
+@app.route(configs['WEB_ROOT'])
 def root():
-    return template('root.html', title = configs['NATU_TITLE'])
+    return template('root.html', title = configs['WEB_TITLE'])
 
-@app.route(configs['NATU_ROOT'] + 'query', method = 'GET')
+@app.route(configs['WEB_ROOT'] + 'query', method = 'GET')
 def query_get():
     return { 'success': True, 'queue': json.dumps(list(download_queue.queue)) }
 
-@app.route(configs['NATU_ROOT'] + 'query', method = 'POST')
+@app.route(configs['WEB_ROOT'] + 'query', method = 'POST')
 def query_post():
     url = request.forms.get('url')
 
@@ -51,7 +51,7 @@ def query_post():
     print('[download] Added [' + url + '] to the download queue')
     return { 'success': True, 'url': url, 'options': options }
 
-@app.route(configs['NATU_ROOT'] + 'update', method = 'GET')
+@app.route(configs['WEB_ROOT'] + 'update', method = 'GET')
 def update():
     command = ['pip', 'install', '--upgrade', 'youtube-dl']
     proc = subprocess.Popen(command, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
@@ -132,7 +132,7 @@ download_thread.start()
 print('[download] Started the download thread')
 
 print('[app] Launch the app')
-app.run(host = configs['NATU_HOST'], port = configs['NATU_PORT'])
+app.run(host = configs['WEB_HOST'], port = configs['WEB_PORT'])
 
 app_done = True
 download_thread.join()

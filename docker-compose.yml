@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-    natu:
-        image: luckame/natu
-        container_name: natu
+    youtube-dl:
+        image: luckame/youtube-dl
+        container_name: youtube-dl
         restart: always
         environment:
-            - NATU_ROOT=/natu/
-            - NATU_TITLE=My Natu
+            - WEB_ROOT=/youtube-dl/
+            - WEB_TITLE=My YTDL
         volumes:
           - ./downloads:/opt/downloads
         ports:

@@ -1,7 +1,7 @@
 #
-# Natu Dockerfile
+# Youtube-DL Dockerfile
 #
-# https://github.com/lucka-me/natu
+# https://github.com/lucka-me/youtube-dl-docker
 #
 
 FROM python:alpine

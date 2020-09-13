@@ -1,6 +1,6 @@
-# Natu
-[![Docker Pulls](https://img.shields.io/docker/pulls/luckame/natu)](https://hub.docker.com/r/luckame/natu "Docker Hub") [![Docker Build Status](https://img.shields.io/docker/cloud/build/luckame/natu)](https://hub.docker.com/r/luckame/natu/builds "Docker Hub Autobuilds")
-[![License](https://img.shields.io/github/license/lucka-me/natu)](./LICENSE "License")
+# Youtube-DL Docker
+[![Docker Pulls](https://img.shields.io/docker/pulls/luckame/youtube-dl)](https://hub.docker.com/r/luckame/youtube-dl "Docker Hub") [![Docker Build Status](https://img.shields.io/docker/cloud/build/luckame/youtube-dl)](https://hub.docker.com/r/luckame/youtube-dl/builds "Docker Hub Autobuilds")
+[![License](https://img.shields.io/github/license/lucka-me/youtube-dl-docker)](./LICENSE "License")
 
 Yet another fork & enhancement of [`youtube-dl-server`](https://github.com/manbearwiz/youtube-dl-server).
 
@@ -14,23 +14,23 @@ Web UI and REST API built with [`bottle`](https://github.com/bottlepy/bottle) fo
 | Parameter | Description
 | :-------- | :----------
 | `-e YDL_OUTPUT_TEMPLATE` | Output format, `./downloads/%(title)s [%(id)s].%(ext)s` for default
-| `-e NATU_HOST` | Host address, `0.0.0.0` for default
-| `-e NATU_PORT` | Host port, `80` for default
-| `-e NATU_ROOT` | Root of the server, `/` for default
-| `-e NATU_TITLE` | Title displayed on the web UI, `Natu` for default
+| `-e WEB_HOST` | Host address, `0.0.0.0` for default
+| `-e WEB_PORT` | Host port, `80` for default
+| `-e WEB_ROOT` | Root of the server, `/` for default
+| `-e WEB_TITLE` | Title displayed on the web UI, `Youtube-DL` for default
 
 #### Examples
 
 - Run a container from CLI:
     ```shell
     docker run -d                   \
-      --name natu                   \
+      --name youtube-dl             \
       --restart always              \
-      -e NATU_ROOT=/natu/           \
-      -e NATU_TITLE=My Natu         \
+      -e WEB_ROOT=/youtube-dl/      \
+      -e WEB_TITLE=My YTDL          \
       -v ./downloads:/opt/downloads \
       -p 8080:80                    \
-      luckame/natu
+      luckame/youtube-dl
     ```
 
 - Run a container with `docker-compose.yml`:
@@ -38,13 +38,13 @@ Web UI and REST API built with [`bottle`](https://github.com/bottlepy/bottle) fo
     version: '3'
 
     services:
-      natu:
-        image: luckame/natu
-        container_name: natu
+      youtube-dl:
+        image: luckame/youtube-dl
+        container_name: youtube-dl
         restart: always
         environment:
-          - NATU_ROOT=/natu/
-          - NATU_TITLE=My Natu
+          - WEB_ROOT=/youtube-dl/
+          - WEB_TITLE=My YTDL
         volumes:
           - ./downloads:/opt/downloads
         ports:
@@ -91,7 +91,7 @@ javascript:!function(){fetch("http://${host}/query",{body:new URLSearchParams({u
 
 ## Implementation
 
-Natu is modified from [`youtube-dl-server`](https://github.com/manbearwiz/youtube-dl-server).
+This application is modified from [`youtube-dl-server`](https://github.com/manbearwiz/youtube-dl-server).
 
 The Web UI is hosted by [`bottle`](https://github.com/bottlepy/bottle).
 
