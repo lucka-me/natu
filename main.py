@@ -58,6 +58,10 @@ format_list = {
 def root():
     return template('root', title = configs['WEB_TITLE'], format_list = format_list)
 
+@app.route(configs['WEB_ROOT'] + 'css/:filename#.*#')
+def css(filename):
+    return static_file(filename, root = './css')
+
 @app.route(configs['WEB_ROOT'] + 'query', method = 'GET')
 def query_get():
     return { 'success': True, 'queue': json.dumps(list(download_queue.queue)) }
