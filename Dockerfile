@@ -1,5 +1,5 @@
 #
-# youtube-dl-server Dockerfile
+# Natu Dockerfile
 #
 # https://github.com/lucka-me/natu
 #

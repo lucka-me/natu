@@ -1,4 +1,5 @@
 # Natu
+[![Docker Pulls](https://img.shields.io/docker/pulls/luckame/natu)](https://hub.docker.com/r/luckame/natu "Docker Hub") [![Docker Build Status](https://img.shields.io/docker/cloud/build/luckame/natu)](https://hub.docker.com/r/luckame/natu/builds "Docker Hub Autobuilds")
 [![License](https://img.shields.io/github/license/lucka-me/natu)](./LICENSE "License")
 
 Yet another fork & enhancement of [`youtube-dl-server`](https://github.com/manbearwiz/youtube-dl-server).
