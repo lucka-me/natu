@@ -32,7 +32,7 @@ app_done = False
 
 @app.route(configs['WEB_ROOT'])
 def root():
-    return template('root.html', title = configs['WEB_TITLE'])
+    return template('root', title = configs['WEB_TITLE'])
 
 @app.route(configs['WEB_ROOT'] + 'query', method = 'GET')
 def query_get():
