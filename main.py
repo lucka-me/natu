@@ -1,10 +1,10 @@
 #coding:utf-8
-import json
 import os
 import subprocess
 import youtube_dl
 
 from bottle import route, Bottle, request, static_file, template
+from bottle_json_pretty import JSONPrettyPlugin
 from collections import ChainMap
 from queue import Queue
 from threading import Thread
@@ -23,11 +23,11 @@ configs_default = {
     'WEB_ROOT': '/',
     'WEB_TITLE': 'Youtube-DL',
 }
-
 configs = ChainMap(os.environ, configs_default)
 
 # Web App
-app = Bottle()
+app = Bottle(autojson = False)
+app.install(JSONPrettyPlugin())
 app_done = False
 
 format_list = {
@@ -64,7 +64,7 @@ def css(filename):
 
 @app.route(configs['WEB_ROOT'] + 'query', method = 'GET')
 def query_get():
-    return { 'success': True, 'queue': json.dumps(list(download_queue.queue)) }
+    return { 'success': True, 'queue': list(download_queue.queue) }
 
 @app.route(configs['WEB_ROOT'] + 'query', method = 'POST')
 def query_post():
