@@ -19,11 +19,19 @@ h1 {
 }
 
 form {
-    margin: 1em 5em;
+    margin: 1em 0.5em;
     align-self: stretch;
     display: flex;
     flex-flow: row nowrap;
     line-height: 1.5;
+}
+
+@media only screen and (min-width: 480px)  {
+    form { margin: 1em 2em; }
+}
+
+@media only screen and (min-width: 768px)  {
+    form { margin: 1em 5em; }
 }
 
 form > * {
