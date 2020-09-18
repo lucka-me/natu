@@ -15,7 +15,6 @@ Web UI and REST API built with [`bottle`](https://github.com/bottlepy/bottle) fo
 
 | Parameter | Description
 | :-------- | :----------
-| `-e YDL_OUTPUT_TEMPLATE` | Output format, `./downloads/%(title)s [%(id)s].%(ext)s` for default
 | `-e WEB_HOST` | Host address, `0.0.0.0` for default
 | `-e WEB_PORT` | Host port, `80` for default
 | `-e WEB_ROOT` | Root of the server, `/` for default
